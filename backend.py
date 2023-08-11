@@ -9,10 +9,8 @@ from PIL import Image, ImageTk, ImageFilter
 
 
 
-if os.path.exists('ParkingManagement.db'):
-    os.remove('ParkingManagement.db')
 
-connection = sqlite3.connect('ParkingManagement.db')
+connection = sqlite3.connect('project.db')
 connector = connection.cursor()
 
 connector.execute("""
@@ -58,11 +56,6 @@ center_frame.place(relx=0.2, y=30, relheight=1, relwidth=0.2)
 right_frame = Frame(main, bg="Gray")
 right_frame.place(relx=0.4, y=30, relheight=1, relwidth=0.6)
 
-# image=Image.open("tkinter/buddha.png")
-# image=image.resize((500,300)),Image.ANTIALIAS
-# background_image=ImageTk.PhotoImage(image)
-# background_label=Label (left_frame,image=background_image)
-# background_label.pack(expand=True)
 
 Label(left_frame, text="Name", font=labelfont, bg=lf_bg).place(x=70, y=1)
 Label(left_frame, text="Contact Number", font=labelfont, bg=lf_bg).place(x=30, y=70)
@@ -186,9 +179,10 @@ Button(left_frame, text='Add Record', font=labelfont, command=add_record, width=
 Button(center_frame, text='Delete Record', font=labelfont, command=remove_record, width=15).place(relx=0.1, rely=0.25)
 Button(center_frame, text='View Record', font=labelfont, command=view_record, width=15).place(relx=0.1, rely=0.35)
 Button(center_frame, text='Reset Fields', font=labelfont, command=reset_fields, width=15).place(relx=0.1, rely=0.45)
+Button(center_frame, text='Delete database', font=labelfont, command=reset_database, width=15).place(relx=0.1, rely=0.55)
 Label(text="Per day for 2 Wheeler: 50 ", font=labelfont).place(relx=0.2, rely=0.70)
 Label(text="Per day for 4 Wheeler: 100", font=labelfont).place(relx=0.2, rely=0.80)
-Button(center_frame, text='Delete database', font=labelfont, command=reset_database, width=15).place(relx=0.1, rely=0.55)
+
 
 Label(right_frame, text='Vehicle Records', font=headlabelfont, bg='red', fg='LightCyan').pack(side=TOP, fill=X)
 tree = ttk.Treeview(right_frame, height=100, selectmode=BROWSE, columns=("VEHICLE_ID", "NAME", "ADDRESS", "PHONE_NO", "VEHICLE_TYPE", "DOE", "VEHICLE_NAME", "SLOT", "NUMBER_PLATE"))
